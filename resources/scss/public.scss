@@ -1,0 +1,3323 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] { display: none !important; }
+
+@charset "utf-8";
+/* CSS Document */
+/*** Сброс стилей браузеров ****************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+{margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; color: inherit; text-decoration: none;}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: '';content: none;}
+table {border-collapse: collapse; border-spacing: 0;}
+/* Конец сброса стилей браузеров */
+/*******************************************************/
+
+/* Стили для видимой части сайта */
+
+/* Общие */
+body {
+    font-family: Segoe UI, Arial, sans-serif;
+    color: #404040;
+    padding-top: 154px;
+}
+svg {
+    width: inherit;
+    max-width: 50px;
+    height: inherit;
+    max-height: 50px;
+}
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.red-round {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #870020;
+}
+
+/* Хэдер ********************************************************************************/
+.open_header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: #fff;
+}
+.open_main-page_header_logo-line {
+    background-color: #fff;
+}
+.open_main-page_header_logo-line .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+.open_main-page_header_info-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #808080;
+    height: 32px;
+    border-bottom: solid 1px rgba(0, 0, 0, .15);
+    width: 1050px;
+
+}
+a.open_main-page_header_logo:hover img {
+    opacity: .85;
+}
+.open_main-page_header_logo-line svg {
+    fill: #808080;
+}
+
+.header_phones-block {
+    position: relative;
+    width: 205px;
+    height: 32px;
+}
+.header_phones-block.active .header_phones {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.header_phones {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    box-sizing: border-box;
+    background-color: #fff;
+    overflow: hidden;
+}
+.header_phone-element {
+    display: none;
+}
+.header_phones:hover {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.header_phones:hover .header_phone-element {
+    display: block;
+}
+.header_phone-line {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+.header_phone-line b {
+    padding-left: 5px;
+}
+.header_phone-line svg {
+    transition: fill .3s;
+}
+.header_phone-line img {
+    filter: grayscale(100%);
+    transition: filter .3s;
+}
+.header_phone-line a {
+    transition: color .3s;
+}
+.header_phone-jpg-ico {
+    width: 20px;
+    padding-right: 9px;
+}
+.header_phone-ico {
+    display: flex;
+    width: 22px;
+    padding-right: 7px;
+}
+.header_phone-line:hover .header_phone-ico svg {
+    fill: #870020;
+}
+.header_phone-line:hover a {
+    color: #870020;
+}
+.header_phone-line:hover img {
+    filter: grayscale(0%);
+}
+.header_phone-line:hover .header_write-to-us,
+.header_phone-line:hover .header_write-to-director,
+.header_phone-line:hover .header_write-demping {
+    opacity: .85;
+}
+.header_phone-arrow {
+    width: 10px;
+    padding-left: 8px;
+}
+.header_phone-ico_mobile {
+    display: none;
+}
+.header_svg {
+    width: 32px;
+    padding-right: 7px;
+    display: flex;
+}
+.header_write-to-us {
+    font-size: 14px;
+    background-color: #e8e8e8;
+    padding: 5px 0;
+    width: 138px;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+.url-line {
+    padding: 20px 0;
+    font-size: 14px;
+}
+.url-line a {
+    transition: .3s;
+}
+.url-line a:hover {
+    color: #870020;
+    text-decoration: underline;
+}
+.url-line span {
+    color: #870020;
+}
+.open_main-page_header_svg {
+    display: flex;
+    height: 22px;
+    padding-right: 7px;
+}
+
+.open_main-page_header_address,
+.open_main-page_header_brand-sites-block,
+.open_main-page_header_languiges,
+.open_main-page_header_dealer-enter {
+    display: flex;
+    align-items: center;
+}
+.open_main-page_header_address {
+    position: relative;
+}
+.open_main-page_header_brand-sites-block {
+    position: relative;
+    width: 135px;
+    height: 32px;
+}
+
+.header_link-ico.mobile {
+    display: none;
+}
+.open_main-page_header_brand-site-links {
+    position: absolute;
+    left: 0;
+    top: 0;
+    //z-index: 2;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+.open_main-page_header_site-link-first {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+.open_main-page_header_site-link {
+    //display: none;
+    padding: 5px 10px 5px 39px;
+}
+
+.open_main-page_header_brand-sites-block.active .open_main-page_header_brand-site-links {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.open_main-page_header_brand-site-links a {
+    transition: color .3s;
+}
+.open_main-page_header_brand-sites-block svg {
+    transition: fill .3s;
+}
+.open_main-page_header_brand-sites-block a:hover {
+    color: #870020;
+}
+
+.header_lang-ico_mobile {
+    display: none;
+}
+.open_main-page_header_languiges-block {
+    position: relative;
+    width: 55px;
+    height: 32px;
+}
+.open_main-page_header_languiges {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+.open_main-page_header_languiges-block.active .open_main-page_header_languiges {
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.open_main-page_header_languiges .first {
+    display: flex;
+    align-items: center;
+}
+.open_main-page_header_languiges a {
+    display: inline-block;
+    padding: 8px 10px;
+    transition: color .3s;
+}
+.open_main-page_header_languiges a:hover {
+    color: #870020;
+}
+.open_main-page_header_languige-element {
+    display: none;
+}
+
+.open_main-page_header_dealer-enter {
+    padding: 0 10px;
+    height: 32px;
+    background-color: #870020;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    transition: opacity .3s;
+    cursor: pointer;
+}
+.open_main-page_header_dealer-enter:hover {
+    opacity: .8;
+}
+.open_main-page_header_dealer-enter svg {
+    fill: #fff;
+}
+
+/* Главное меню **********************************************************************/
+.open_header_menu-line {
+    background-color: #fff;
+}
+.open_header_menu-line .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    border-bottom: solid 1px rgba(0, 0, 0, .15);
+}
+
+.open_main-menu_burger-block {
+    display: none;
+}
+
+.open_header_main-menu {
+    height: 40px;
+}
+.open_header_main-menu ul {
+    display: flex;
+    height: 100%;
+}
+.open_header_main-menu ul li {
+    height: 100%;
+    display: flex;
+}
+.open_header_main-menu ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 0 15px;
+    transition: .3s;
+}
+.open_header_main-menu ul li a:hover,
+.open_header_main-menu ul li a.active {
+    background-color: #870020;
+    color: #fff;
+}
+.open_header_main-menu .arrow {
+    width: 10px;
+    margin-left: 5px;
+}
+.open_header_main-menu ul li a .arrow svg {
+    transition: fill .3s;
+}
+.open_header_main-menu ul li a:hover .arrow svg,
+.open_header_main-menu ul li a.active .arrow svg {
+    fill: #fff;
+}
+.open_header_main-menu .service-menu {
+    position: relative;
+}
+.open_header_main-menu .service-sub-menu {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: max-content;
+    height: auto;
+    border: solid 1px #eee;
+    background-color: #fff;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    display: none;
+    flex-direction: column;
+}
+.open_header_main-menu .service-menu:hover .service-sub-menu {
+    display: flex;
+}
+.open_header_main-menu .service-sub-menu li {
+    border-bottom: solid 1px #eee;
+}
+.open_header_main-menu .service-sub-menu li:last-child {
+    border-bottom: none;
+}
+.open_header_main-menu .service-sub-menu li a {
+    flex-grow: 1;
+    justify-content: left;
+    height: 30px;
+    text-transform: inherit;
+}
+
+.open_service-repare-status-page {
+    box-sizing: border-box;
+    min-height: calc(100vh - 367px);
+}
+.open_service-repare-status-page .page-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.open_service-repare-status_form-block {
+    margin-bottom: 20px;
+}
+.open_service-repare-status_form-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.open_service-repare-status_form-line .title {
+    flex: 0 0 140px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.open_service-repare-status_form-line .input {
+    margin-left: 10px;
+    width: 140px;
+    height: 30px;
+}
+.open_service-repare-status_form-line .input input {
+    margin: 0;
+    padding: 0 5px;
+    outline: none;
+    border: solid 1px #cecece;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.open_service-repare-status_form-line .button {
+    margin-left: 10px;
+    width: auto;
+    height: 30px;
+    background-color: #870020;
+    color: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    transition: opacity .3s;
+}
+.open_service-repare-status_form-line .button:hover {
+    opacity: .8;
+}
+
+.open_service-repare-status_info-block {
+    display: none;
+    margin-bottom: 30px;
+    width: auto;
+    max-width: 800px;
+}
+.open_service-repare-status_wrapper {
+    border: solid 1px #cecece;
+    line-height: 1.3;
+}
+.open_service-repare-status_info-block .info-line {
+    display: flex;
+    padding: 5px 0;
+}
+.open_service-repare-status_info-block .info-line:nth-child(odd) {
+    background-color: #eee;
+}
+.open_service-repare-status_info-block .info-line .title {
+    font-weight: 600;
+    padding: 0 10px;
+    flex: 0 0 200px;
+}
+.open_service-repare-status_info-block .info-line .info {
+    flex-grow: 1;
+}
+
+
+.open_main-page_header_shop-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 430px;
+}
+.open_main-page_header_alfagradm-link {
+    height: 40px;
+}
+.open_main-page_header_7150-link {
+    height: 40px;
+    margin-top: -15px;
+}
+.open_main-page_header_shop-links a img {
+    display: block;
+    height: 100%;
+    filter: grayscale(100%);
+    transition: filter .3s;
+}
+.open_main-page_header_shop-links a.open_main-page_header_7150-link img {
+    opacity: .8;
+    transition: opacity .3s;
+}
+.open_main-page_header_shop-links a.open_main-page_header_7150-link:hover img {
+    opacity: 1;
+}
+.open_main-page_header_shop-links a:hover img {
+    filter: grayscale(0%);
+}
+
+
+/* Главная страница **********************************************************************/
+
+.open_main-page_banner-block {
+    position: relative;
+    display: flex;
+}
+/*.open_main-page_banner-block video {
+    width: 100%;
+}
+.open_main-page_banner-block video::-webkit-media-controls {
+    display:none !important;
+}*/
+.open_main-page_banner-block img {
+    display: block;
+    width: 100%;
+}
+.open_main-page_banner-block_text-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+.open_main-page_banner-block_text-wrapper .container {
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+.open_main-page_banner-text {
+    position: absolute;
+    right: 3%;
+    top: 9%;
+    z-index: 3;
+    width: 385px;
+    padding: 20px 30px;
+    font-size: 18px;
+    line-height: 1.4;
+    background-color: #870020;
+    color: #fff;
+    opacity: .65;
+}
+
+.open_main-page_about-block {
+    /*background-color: #98a0b5;*/
+}
+.open_main-page_about-block .container {
+    padding: 30px 175px;
+    color: #870020;
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.open_main-page_block-1 {
+    /*background-color: #870020;*/
+}
+.open_main-page_block-1 .container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px 0;
+    background-color: #870020;
+}
+.open_main-page_block-1-element {
+    color: #fff;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.open_main-page_block-1-svg {
+    width: 40px;
+}
+.open_main-page_block-1-svg svg {
+    fill: #fff;
+}
+.open_main-page_block-1-rating {
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.open_main-page_block-1-description {
+    margin-top: 5px;
+    text-align: center;
+}
+.open_main-page_block-1-description span {
+    vertical-align: top;
+    font-size: 10px;
+}
+
+.open_main-page_block-2 .container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px 0;
+}
+.open_main-page_block-2_text-block {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.open_main-page_block-2_text-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: #870020;
+}
+.open_main-page_block-2_description {
+    font-size: 18px;
+    margin-top: 12px;
+}
+.open_main-page_block-2_map-block {
+    width: 550px;
+}
+.open_main-page_block-2_map-block img {
+    display: block;
+    width: 100%;
+}
+.open_main-page_block-3-stages_title {
+    background-color: #98a0b5;
+    color: #fff;
+    height: 100px;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.open_main-page_block-3-stages .container {
+    padding-bottom: 50px;
+}
+.open_main-page_stage-element {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.open_main-page_stage-element:last-child {
+    margin-bottom: 0;
+}
+.open_main-page_stage-element_img-block {
+    flex: 0 0 500px;
+    text-align: center;
+}
+.open_main-page_stage-element_text-block {
+    flex: 0 0 500px;
+}
+.open_main-page_stage-element_round {
+    width: 90px;
+    height: 90px;
+    border: solid 3px #CA8B84;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_main-page_stage-element_round-in {
+    width: 78px;
+    height: 78px;
+    background-color: #870020;
+    border-radius: 50%;
+    font-size: 46px;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_main-page_stage-element_white-round-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_main-page_stage-element_white-round {
+    width: 13px;
+    height: 13px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+.open_main-page_stage-element_line {
+    border: solid 1px #98a0b5;
+    width: 2px;
+    box-sizing: border-box;
+    height: 50px;
+    margin: 5px auto 0;
+}
+.open_main-page_stage-element_arrow {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+}
+.open_main-page_stage-element_arrow svg {
+    max-width: 300px;
+    max-height: inherit;
+}
+.open_main-page_stage-element_arrow.left svg {
+    fill: #98a0b5;
+}
+.open_main-page_stage-element_arrow.right svg {
+    fill: #870020;
+    transform: rotate(180deg);
+}
+.open_main-page_stage-element_text-block {
+    text-align: center;
+}
+.open_main-page_stage-element_year {
+    font-size: 36px;
+    color: #98a0b5;
+    font-weight: bold;
+}
+.open_main-page_stage-element_header {
+    font-size: 24px;
+    color: #870020;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.open_main-page_stage-element_description {
+    font-size: 18px;
+    line-height: 1.2;
+    margin-top: 15px;
+}
+
+.open_main-page_block-4-structure_title {
+    background-color: #870020;
+    color: #fff;
+    height: 100px;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.open_main-page_structure-element {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.open_main-page_structure-element:last-child {
+    padding-bottom: 50px;
+}
+.open_main-page_structure-element_img-block,
+.open_main-page_structure-element_text-block {
+    flex: 0 0 47%;
+    margin-bottom: 30px;
+}
+.open_main-page_structure-element_img-block img {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.open_main-page_structure-element_text-block h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #870020;
+    margin-bottom: 20px;
+}
+.open_main-page_structure-element_text-block p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    text-align: justify;
+}
+.open_main-page_structure-element_text-block p:last-child {
+    margin-bottom: 0;
+}
+
+.open_main-page_block-5-map_title {
+    background-color: #98a0b5;
+    color: #fff;
+    height: 100px;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_main-page_map {
+    position: relative;
+}
+.open_main-page_map .cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Страница Дилерам *******************************************************************************/
+
+.open_dealer-page_top-pic-block .container {
+    position: relative;
+    border-bottom: 5px solid #870020;
+}
+.open_dealer-page_top-pic {
+    display: block;
+    width: 100%;
+}
+.open_dealer-page_top-pic-shading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+.open_dealer-page_top-pic-text-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_dealer-page_top-pic-text {
+    width: 90%;
+    color: #fff;
+    font-size: 36px;
+    text-align: center;
+    line-height: 1.3;
+}
+.open_dealer-page_top-pic-text p:first-child {
+    margin-bottom: 30px;
+}
+
+.open_dealer-page_advantages .container {
+    padding-bottom: 20px;
+    border-bottom: 5px solid #870020;
+}
+.open_dealer-page_advantages h2 {
+    padding: 50px 0;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+.open_dealer-page_advantages-block {
+    display: flex;
+    justify-content: space-evenly;
+}
+.open_dealer-page_advantages-block-left,
+.open_dealer-page_advantages-block-right {
+    flex: 0 0 650px;
+}
+.open_dealer-page_advantages-element {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.open_dealer-page_advantages_img-block {
+    flex: 0 0 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: solid 3px #CA8B84;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_dealer-page_advantages_img-background {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    background-color: #870020;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_dealer-page_advantages_svg svg {
+    fill: #fff;
+    width: 80px;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+.open_dealer-page_advantages_text {
+    font-size: 19px;
+    line-height: 1.2;
+    padding-left: 20px;
+}
+
+.open_dealer-page_pic-2-block .container {
+    position: relative;
+    border-bottom: 5px solid #870020;
+}
+.open_dealer-page_pic-2 {
+    display: block;
+    width: 100%;
+}
+.open_dealer-page_pic-2-shading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+.open_dealer-page_pic-2-text-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_dealer-page_pic-2-text {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.open_dealer-page_offer .container {
+    padding: 50px 0;
+    border-bottom: 5px solid #870020;
+}
+.open_dealer-page_offer.last .container {
+    border-bottom: none;
+}
+.open_dealer-page_offer-block {
+    display: flex;
+    justify-content: space-evenly;
+}
+.open_dealer-page_offer-block-left,
+.open_dealer-page_offer-block-right {
+    flex: 0 0 650px;
+}
+.open_dealer-page_offer-block-left .open_dealer-page_offer_element {
+    margin-bottom: 30px;
+}
+.open_dealer-page_offer-block-right .open_dealer-page_offer_element {
+    margin-bottom: 30px;
+}
+.open_dealer-page_offer_element:last-child {
+    margin-bottom: 0;
+}
+.open_dealer-page_offer_element h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.open_dealer-page_offer_element p {
+    line-height: 1.3;
+    font-size: 18px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+}
+.open_dealer-page_offer_element p:last-child {
+    margin-bottom: 0;
+}
+.open_dealer-page_offer_element span {
+    height: 13px;
+    display: inline-block;
+    margin-left: -20px;
+    padding-right: 7px;
+}
+.open_dealer-page_offer_element svg {
+    fill: #870020;
+}
+
+
+.open_dealer-page_pic-3-block .container {
+    position: relative;
+    border-bottom: 5px solid #870020;
+}
+.open_dealer-page_pic-3 {
+    display: block;
+    width: 100%;
+}
+.open_dealer-page_pic-3-shading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    background: -webkit-linear-gradient(90deg, rgb(0, 0, 0) 25%, rgba(0, 0, 0, .5) 50%);
+    background: -moz-linear-gradient(90deg, rgb(0, 0, 0) 25%, rgba(0, 0, 0, .5) 50%);
+    background: linear-gradient(90deg, rgb(0, 0, 0) 25%, rgba(0, 0, 0, .5) 50%);
+}
+.open_dealer-page_pic-3-text-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.open_dealer-page_pic-3-text {
+    width: 570px;
+    margin-left: 50px;
+    color: #fff;
+    text-align: left;
+}
+.open_dealer-page_pic-3-text h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.open_dealer-page_pic-3-text p {
+    line-height: 1.3;
+    font-size: 18px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+.open_dealer-page_pic-3-text p:last-child {
+    margin-bottom: 0;
+}
+.open_dealer-page_pic-3-text .round {
+    display: inline-block;
+    background-color: #fff;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin: 0 10px 4px -15px;
+}
+
+.open_dealer-page_pic-4-block .container {
+    position: relative;
+    border-bottom: 5px solid #870020;
+}
+.open_dealer-page_pic-4 {
+    display: block;
+    width: 100%;
+}
+.open_dealer-page_pic-4-shading {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+.open_dealer-page_pic-4-text-block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.open_dealer-page_pic-4-text {
+    width: 570px;
+    margin-right: 50px;
+    color: #fff;
+    text-align: left;
+}
+.open_dealer-page_pic-4-text h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.open_dealer-page_pic-4-text p {
+    line-height: 1.3;
+    font-size: 18px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+.open_dealer-page_pic-4-text p:last-child {
+    margin-bottom: 0;
+}
+.open_dealer-page_pic-4-text .round {
+    display: inline-block;
+    background-color: #fff;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin: 0 10px 4px -15px;
+}
+
+.open_dealer-page_brand-logo-block .container {
+    padding-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.open_dealer-page_brand-logo-block img {
+    height: 60px;
+    padding: 0 5px;
+}
+
+/* Страница Бренды *******************************************************************************/
+.open_brand-page_our-brands {
+    padding-bottom: 100px;
+}
+.open_brand-page_our-brands h2 {
+    padding: 30px 0 50px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    text-transform: uppercase;
+}
+
+.open_brand-page_our-brands_element {
+    padding: 20px;
+    border-top: solid 1px #870020;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.open_brand-page_our-brands_element:last-child {
+    border-bottom: solid 1px #870020;
+}
+.open_brand-page_our-brands_logo {
+    flex: 0 0 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_brand-page_our-brands_logo img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    /*height: auto;*/
+    /*max-height: 60px;*/
+    transition: opacity .3s;
+}
+.open_brand-page_our-brands_text-block {
+    padding-left: 30px;
+    flex-grow: 1;
+}
+.open_brand-page_our-brands_text-block p {
+    margin-bottom: 15px;
+    text-align: justify;
+    line-height: 1.3;
+}
+.open_brand-page_our-brands_text-block p:last-child {
+    margin-bottom: 0;
+}
+.open_brand-page_our-brands_description {
+    transition: color .3s;
+}
+.open_brand-page_our-brands_description.no_active {
+    display: none;
+}
+.open_brand-page_our-brands_description span {
+    color: #870020;
+    text-decoration: underline;
+    white-space: nowrap;
+    font-weight: 600;
+    display: none;
+}
+.open_brand-page_our-brands_element:hover .open_brand-page_our-brands_description span {
+    /*display: inline;*/
+}
+.open_brand-page_our-brands_element:hover img {
+    opacity: .7;
+}
+.open_brand-page_our-brands_element:hover .open_brand-page_our-brands_description {
+    color: #000;
+}
+.open_brand-page_our-brands_svg {
+    display: flex;
+    padding-left: 30px;
+}
+.open_brand-page_our-brands_svg svg {
+    fill: #870020;
+    height: 20px;
+    transition: transform .3s;
+}
+.open_brand-page_our-brands_svg.active svg {
+    transform: rotate(180deg);
+}
+
+/* Страница контакты *******************************************************************************/
+
+.open_contact-page_contacts h2 {
+    padding: 10px 0 50px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    text-transform: uppercase;
+}
+.open_contact-page_contacts-block {
+    display: flex;
+}
+.open_contact-page_contact-map {
+    flex: 0 0 60%;
+}
+.open_contact-page_contact-info {
+    flex: 0 0 40%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+.open_contact-page_contact-info p {
+    margin-bottom: 20px;
+    line-height: 1.3;
+    margin-left: 20px;
+}
+.open_contact-page_contact-info p:last-child {
+    margin-bottom: 0;
+}
+.open_contact-page_contact-info p:first-child {
+    margin-left: 0;
+}
+.open_contact-page_contact-info h3 {
+    opacity: .8;
+    margin-left: 20px;
+    line-height: 1.3;
+}
+.open_contact-page_contact-info a.link {
+    opacity: .8;
+    text-decoration: underline;
+}
+.open_contact-page_contact-info a {
+    transition: .3s;
+}
+.open_contact-page_contact-info a:hover {
+    opacity: 1;
+    color: #870020;
+}
+.open_contact-page .red-round {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: -20px;
+}
+
+.open_contact-page_contacts-2 {
+    margin: 50px 0;
+}
+.open_contact-page_contacts-2 h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    text-transform: uppercase;
+}
+.open_contact-page_contacts-2 .container {
+    display: flex;
+}
+.open_contact-page_contacts-2 .container .block {
+    flex: 0 0 50%;
+}
+.open_contact-page_contacts-2 .container .block:first-child {
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+.open_contact-page_contact-claim {
+    margin-top: 50px;
+}
+.open_contact-page_contacts-2 p {
+    line-height: 1.3;
+    margin-left: 20px;
+}
+.open_contact-page_contacts-2 h3 {
+    opacity: .8;
+    margin-left: 20px;
+    line-height: 1.3;
+}
+.open_contact-page_contacts-2 a {
+    transition: .3s;
+}
+.open_contact-page_contacts-2 a:hover {
+    opacity: 1;
+    color: #870020;
+}
+.open_contact-page_contact-claim img {
+    display: inline-block;
+    height: 16px;
+    padding-left: 7px;
+    margin-bottom: -4px;
+}
+.open_contact-page_requisites div {
+    margin-bottom: 15px;
+}
+.open_contact-page_requisites div:last-child {
+    margin-bottom: 0;
+}
+.open_contact-page_services h2,
+.open_service-repare-status h2 {
+    padding: 30px 0 50px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    text-transform: uppercase;
+}
+.open_contact-page_services p {
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+.open_contact-page_services a {
+    transition: color .3s;
+}
+.open_contact-page_services a:hover {
+    color: #870020;
+    text-decoration: underline;
+}
+.service-page_centers-toggler ul {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1px #870020;
+    margin-bottom: 0;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+.service-page_centers-toggler ul li {
+    display: block;
+    padding: 5px 15px;
+    margin: 0 0 5px 0;
+    color: #870020;
+    text-align: center;
+    font-size: 18px;
+    position: inherit;
+}
+.service-page_centers-toggler ul li:before {
+    content: none;
+    display: none;
+}
+.service-page_centers-toggler ul li.active,
+.service-page_centers-toggler ul li:hover {
+    color: #fff;
+    background-color: #870020;
+}
+.service-page_centers-toggler ul li:hover {
+    cursor: pointer;
+}
+.service-page_centers-toggler ul li:first-child {
+    /*border-left: solid 1px #870020;*/
+}
+.service-page_service-centers-block {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+.service-page_service-centers-block {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.service-page_service-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    visibility: hidden;
+    box-sizing: border-box;
+    padding: 15px 0;
+    margin-bottom: 50px;
+    /*border-right: solid 1px #870020;*/
+    /*border-left: solid 1px #870020;*/
+    /*border-bottom: solid 1px #870020;*/
+    opacity: 0;
+    transition: opacity 1s;
+}
+.service-page_service-center address {
+    font-style: normal;
+}
+.service-page_service-center.active {
+    position: relative;
+    visibility: visible;
+    opacity: 1;
+}
+.service-page_service-center_element {
+    margin-bottom: 30px;
+    position: relative;
+}
+.service-page_visitka-link {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 25px;
+    border: solid 1px #870020;
+    color: #870020;
+    font-size: 14px;
+    display: flex;
+}
+.service-page_visitka-link a {
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+}
+.service-page_service-center address h3 {
+    margin-bottom: 20px;
+    padding-right: 250px;
+    line-height: 1.5;
+}
+.service-page_service-center_element:last-child {
+    margin-bottom: 0;
+}
+.service-page_img-map {
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 15px;
+}
+.service-page_img {
+    flex: 0 0 30%;
+    box-sizing: border-box;
+}
+.service-page_img img {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+.service-page_map {
+    flex: 0 0 70%;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+
+
+/* Страница вакансии *******************************************************************************/
+
+.open_vacancy-page_title {
+    padding: 30px 0 50px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    text-transform: uppercase;
+}
+
+.open_vacancy-page_advantage_img-block {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: solid 3px #CA8B84;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_vacancy-page_advantage_img-background {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    background-color: #870020;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_vacancy-page_advantage_svg {
+    display: flex;
+}
+.open_vacancy-page_advantage_svg svg {
+    fill: #fff;
+    width: 80px;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.open_vacancy-page_advantages-block {
+    display: flex;
+    justify-content: space-evenly;
+}
+.open_vacancy-page_advantage-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+}
+.open_vacancy-page_advantage_description {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.open_vacancy-page_vacancies {
+    margin-bottom: 100px;
+}
+.open_vacancy-page_company-part-block {
+    display: flex;
+}
+.open_vacancy-page_company-part_info {
+    flex: 0 0 50%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+.open_vacancy-page_company-part_youtube {
+    flex: 0 0 50%;
+    padding-top: 7px;
+}
+.open_vacancy-page_company-part_youtube iframe {
+    width: 100%;
+    height: 100%;
+}
+.open_vacancy-page_company-part_title,
+.open_vacancy-page_vacancies_title {
+    padding: 100px 0 30px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #870020;
+    text-transform: uppercase;
+}
+.open_vacancy-page_company-part p {
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+.open_vacancy-page_company-part p.marker {
+    margin-left: 20px;
+}
+.open_vacancy-page_company-part .red-round {
+    width: 10px;
+    height: 10px;
+    margin-left: -20px;
+}
+.open_vacancy-page_company-part p:last-child {
+    margin-bottom: 0;
+}
+.open_vacancy-page_vacancy-element {
+    padding: 20px 30px;
+    border-top: solid 1px #870020;
+}
+.open_vacancy-page_vacancy-element:last-child {
+    border-bottom: solid 1px #870020;
+}
+.open_vacancy-page_vacancy-element_title-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.open_vacancy-page_vacancy-element_title-line h3 {
+    font-size: 20px;
+    color: #870020;
+    font-weight: 600;
+}
+.open_vacancy-page_vacancy-element_salary {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.open_vacancy-page_vacancy-element_arrow {
+    display: flex;
+    padding-left: 50px;
+}
+.open_vacancy-page_vacancy-element_arrow svg {
+    fill: #870020;
+    width: 20px;
+    height: auto;
+    transition: transform .3s;
+}
+.open_vacancy-page_vacancy-element_arrow.active svg {
+    transform: rotate(180deg);
+}
+.open_vacancy-page_vacancy-element_text-block {
+    margin-top: 30px;
+}
+.open_vacancy-page_vacancy-element_text p {
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+.open_vacancy-page_vacancy-element_text p:last-child {
+    margin-bottom: 0;
+}
+.open_vacancy-page_vacancy-element_vacancy-link {
+    margin-top: 30px;
+}
+.open_vacancy-page_vacancy-element_vacancy-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #870020;
+    color: #fff;
+    text-transform: uppercase;
+    transition: opacity .3s;
+}
+.open_vacancy-page_vacancy-element_vacancy-link a:hover {
+    opacity: .85;
+}
+.open_vacancy-page_vacancy-element_vacancy-note {
+    margin-top: 15px;
+    color: #870020;
+    font-weight: bold;
+    font-size: 14px;
+}
+.open_vacancy-page_vacancy-element_vacancy-note span {
+    vertical-align: top;
+    font-size: 12px;
+}
+
+/* Футер */
+.footer_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+.footer_address-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+}
+.footer_legal-address,
+.footer_actual_address,
+.footer_phones a {
+    display: flex;
+    align-items: center;
+}
+.footer_svg {
+    height: 16px;
+    padding-right: 10px;
+}
+.footer_phones-block {
+    display: flex;
+    justify-content: space-between;
+    width: 410px;
+}
+.footer_actual_address {
+    line-height: 1.5;
+}
+.footer_phones a {
+    padding: 5px 0;
+    transition: .3s;
+}
+.footer_phones a img {
+    height: 16px;
+    padding-right: 10px;
+    filter: grayscale(100%);
+    transition: filter .3s;
+}
+.footer_phones a svg {
+    transition: fill .3s;
+}
+.footer_phones a:hover {
+    color: #870020;
+}
+.footer_phones a:hover img {
+    filter: grayscale(0%);
+}
+.footer_phones a:hover svg {
+    fill: #870020;
+}
+
+.footer_social-links-wrapper {
+    border-bottom: solid 1px rgba(0, 0, 0, .15);
+    padding-bottom: 20px;
+}
+.footer_social-links-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 210px;
+}
+.footer_social-links-block a {
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+.footer_social-links-block a img {
+    transition: transform .3s;
+    height: 100%;
+    margin-right: 7px;
+}
+.footer_social-links-block a:hover {
+    color: #870020;
+}
+.footer_social-links-block a:hover img {
+    transform: scale(1.25);
+}
+
+.footer_copyright {
+    padding: 20px 0;
+}
+
+
+/* Всплывающее написать письмо ***************************************************************/
+
+.open_popup {
+    //display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .7);
+}
+.open_popup-note {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, .7);
+}
+.open_popup-note .open_popup_info-block {
+    padding: 20px;
+    background-color: #870020;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.open_popup_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.open_popup_info-block {
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    max-height: 95vh;
+    background-color: #fff;
+    position: relative;
+}
+.open_popup_close-button {
+    position: absolute;
+    top: -15px;
+    right: -40px;
+    font-size: 40px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.open_popup_logo {
+    display: flex;
+    justify-content: center;
+}
+.open_popup_logo img {
+    width: 200px;
+    padding: 15px 0;
+}
+.open_popup_title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    padding: 15px 0;
+    margin: 0 -5px;
+    background-color: #870020;
+    color: #fff;
+    border-radius: 3px;
+}
+.open_popup_title span {
+    font-size: 18px;
+}
+.open_popup_form-wrapper {
+    padding: 20px;
+    box-sizing: border-box;
+    max-height: calc(90vh - 160px);
+    overflow-y: auto;
+}
+.open_popup_form {
+    width: 100%;
+    box-sizing: border-box;
+}
+.open_popup_form input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    outline: none;
+    border: solid 1px #cecece;
+    border-radius: 0;
+    margin-bottom: 15px;
+}
+.open_popup_field-title {
+    margin-bottom: 5px;
+}
+.open_popup_field-title span {
+    color: #870020;
+    font-size: 12px;
+    vertical-align: top;
+}
+.open_popup_form textarea {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    outline: none;
+    border: solid 1px #cecece;
+    border-radius: 0;
+    margin-bottom: 20px;
+}
+.open_popup_capcha {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.open_popup_button {
+    display: flex;
+    justify-content: center;
+}
+.open_popup_button button {
+    background-color: #870020;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0;
+    font-family: Segoe UI, Arial, sans-serif;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+.open_popup_button button:hover {
+    opacity: .8;
+}
+/* Для входа дилеров */
+.open_popup_forgot-pass {
+    text-align: right;
+    margin-bottom: 20px;
+}
+.open_popup_forgot-pass div {
+    display: inline-block;
+    color: #909090;
+    font-size: 13px;
+    padding-bottom: 2px;
+    border-bottom: 1px dotted #909090;
+    cursor: pointer;
+    transition: border .3s;
+}
+.open_popup_forgot-pass div:hover {
+    border-bottom-color: transparent;
+}
+.open_popup_submit-block {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+}
+.open_popup_submit-block button {
+    flex: 0 0 49%;
+    background-color: #870020;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    font-family: Segoe UI, Arial, sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity .3s;
+}
+.open_popup_submit-block button:hover {
+    opacity: .8;
+}
+.open_popup_submit-block a {
+    flex: 0 0 49%;
+    background-color: #eee;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .3s;
+}
+.open_popup_submit-block a:hover {
+    background-color: #cecece;
+}
+.open_popup_result-note-wrapper {
+    display: none;
+    margin-top: 20px;
+}
+.open_popup_result-note {
+    box-sizing: border-box;
+    border: solid 1px #870020;
+    width: 100%;
+    height: 50px;
+    color: #870020;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Кнопка вверх **************************************************************************/
+
+.on-top-button {
+    position: fixed;
+    right: 3%;
+    bottom: 150px;
+    z-index: 1;
+    display: flex;
+    cursor: pointer;
+}
+.on-top-button svg {
+    width: 50px;
+    opacity: 0;
+    display: none;
+    transition: opacity .3s;
+}
+.on-top-button.active:hover svg {
+    opacity: .5;
+}
+.on-top-button.active svg {
+    opacity: .3;
+    display: flex;
+    transition: opacity .3s;
+}
+
+
+/* Слайдер на Главной ******************************************************************/
+.main-page_promo-line_slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+}
+.main-page_promo-line_slider-block {
+    display: flex;
+}
+.main-page_promo-line_slider-element {
+    flex: 0 0 100%;
+    position: relative;
+}
+.main-page_promo-line_slider-element img {
+    width: 100%;
+}
+.main-page_promo-line_slider-description-wrapper {
+    display: block;
+    position: absolute;
+    left: 5%;
+    bottom: 15%;
+    z-index: 1;
+    width: 500px;
+    height: 100px;
+}
+.main-page_promo-line_slider-description {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(135, 0, 32, .7);
+    color: #fff;
+    font-size: 32px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-page_slider-lines-block {
+    position: absolute;
+    right: 2%;
+    top: 0;
+    z-index: 2;
+    width: 30%;
+    opacity: .6;
+    padding: 20px 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-evenly;
+}
+.main-page_slider-lines-block_line {
+    width: 30%;
+    height: 4px;
+    background-color: #c6c6c6;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.main-page_slider-lines-block_line:last-child {
+    margin-right: 0;
+}
+.main-page_slider-lines-block_line-back {
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #404040;
+}
+.main-page_slider-lines-block_line.active .main-page_slider-lines-block_line-back {
+    left: 0;
+    transition: 7s linear;
+}
+
+/***************************************************************************/
+
+.form-red-star {
+    font-size: 18px;
+    color: red;
+}
+.registration-page {
+    margin-top: 30px;
+}
+.registration-page h1 {
+    width: 980px;
+    background-color: #870020;
+    color: #fff;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 14px 0;
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+.registration-page_form-block {
+    border: solid 1px #870020;
+    padding: 0 10px;
+    width: 980px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.registration-page_client-type-block {
+    padding: 20px 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+.registration-page_client-type-block div {
+    padding-bottom: 10px;
+}
+.registration-page_client-type-block div:last-child {
+    padding-right: 0;
+}
+.registration-page_client-type-block input {
+    margin-left: 0;
+}
+.registration-page_personal-data-block,
+.registration-page_company-data-block,
+.registration-page_bank-data-block,
+.registration-page_shops-data-block {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.registration-page_personal-data {
+    flex: 0 0 232.5px;
+}
+.registration-page_personal-data .title,
+.registration-page_company-data .title,
+.registration-page_bank-data .title,
+.registration-page_shops-data-block .title {
+    margin-bottom: 10px;
+}
+.registration-page_personal-data input,
+.registration-page_company-data input,
+.registration-page_bank-data input {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: solid 1px #999;
+    border-radius: 0px;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.registration-page_personal-data.pass {
+    position: relative;
+}
+.registration-page_personal-data.pass .eye {
+    position: absolute;
+    bottom: 8px;
+    right: 5px;
+    height: 22px;
+    cursor: pointer;
+}
+.registration-page_personal-data.pass .eye img {
+    display: block;
+    height: 100%;
+}
+.registration-page_personal-data.pass input {
+    padding-right: 26px;
+}
+
+.registration-page_company-data {
+    flex: 0 0 313.33px;
+}
+.registration-page_bank-data {
+    flex: 0 0 313.33px;
+}
+
+.registration-page_contacts-data-block {
+    display: flex;
+    justify-content: space-between;
+}
+.registration-page_contacts-block {
+    flex: 0 0 475px;
+    padding: 10px 0;
+}
+.registration-page_contacts-block .header {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.registration-page_contacts-block .add-contact-form {
+    padding: 20px;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+}
+.registration-page_contacts-block .contact-block-title {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.registration-page_contacts-block .input-block .title {
+    margin-bottom: 10px;
+}
+.registration-page_contacts-block .input-block input {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: solid 1px #999;
+    border-radius: 0px;
+    outline: none;
+    display: flex;
+    align-items: center;
+}
+.registration-page_contacts-block .save-contact-button {
+    display: inline-block;
+    background-color: #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.registration-page_contacts-block .save-contact-button:hover {
+    background-color: #dfdfdf;
+}
+
+.registration-page_contacts-block .added_contact,
+.registration-page_contacts-block .added_address {
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    position: relative;
+}
+.registration-page_contacts-block .added_contact .close,
+.registration-page_contacts-block .added_address .close {
+    position: absolute;
+    padding: 5px;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    visibility: hidden;
+}
+.registration-page_contacts-block .added_contact:hover .close,
+.registration-page_contacts-block .added_address:hover .close {
+    visibility: visible;
+}
+.registration-page_contacts-block .added_contact .close:hover,
+.registration-page_contacts-block .added_address .close:hover {
+    color: #870020;
+}
+.registration-page_contacts-block .added_contact .tel,
+.registration-page_contacts-block .added_address .address {
+    font-weight: 600;
+}
+.registration-page_contacts-block .add-contact-link {
+    color: #870020;
+    cursor: pointer;
+    padding-bottom: 1px;
+    border-bottom: dotted 1px #870020;
+}
+.registration-page_contacts-block .add-contact-link:hover {
+    border-bottom: none;
+}
+
+.registration-page_shops-data {
+    flex: 0 0 313.33px;
+}
+.registration-page_shops-data textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1px #999;
+    border-radius: 0px;
+    outline: none;
+}
+
+.registration-page_captha,
+.registration-page_submit {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.registration-page_submit {
+    padding-bottom: 20px;
+}
+.registration-page_submit button {
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #870020;
+    color: #fff;
+    border: none;
+    border-radius: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+.registration-page_submit button:hover {
+    opacity: .8;
+}
+
+/**********************************************************************/
+@media (max-width: 1460px) {
+
+    .container {
+        width: 1240px;
+    }
+
+    .open_main-page_header_info-block {
+        width: 900px;
+    }
+
+    .open_main-page_about-block .container {
+        padding: 50px 75px;
+    }
+
+    .open_dealer-page_advantages-block {
+        justify-content: space-between;
+    }
+    .open_dealer-page_advantages-block-left,
+    .open_dealer-page_advantages-block-right {
+        flex: 0 0 610px;
+    }
+    .open_dealer-page_offer-block-left,
+    .open_dealer-page_offer-block-right {
+        flex: 0 0 580px;
+    }
+
+    footer {
+        font-size: 15px;
+    }
+
+    .footer_address-block {
+        width: 790px;
+    }
+
+}
+
+
+/**********************************************************************/
+@media (max-width: 1260px) {
+
+    body {
+        padding-top: 150px;
+    }
+    .container {
+        width: 980px;
+    }
+
+    .open_header_main-menu ul li a {
+        padding: 0 10px;
+    }
+
+    .open_main-page_header_logo img {
+        height: 45px;
+    }
+    .open_main-page_header_info-block {
+        font-size: 14px;
+    }
+
+    .header_phones-block {
+        width: 195px;
+        height: 26px;
+    }
+    .header_phone-ico {
+        width: 16px;
+        padding-right: 5px;
+    }
+    .header_phone-jpg-ico {
+        width: 14px;
+        padding-right: 7px;
+    }
+    .header_phone-arrow {
+        width: 10px;
+        padding-left: 5px;
+    }
+
+    .open_main-page_header_info-block {
+        width: 745px;
+    }
+    .open_main-page_header_svg {
+        height: 16px;
+        padding-right: 5px;
+    }
+
+    .open_main-page_header_brand-sites-block {
+        position: relative;
+        width: 110px;
+        height: 26px;
+    }
+    .open_main-page_header_site-link {
+        padding-left: 31px;
+    }
+    .open_main-page_header_languiges-block {
+        width: 47px;
+        height: 26px;
+    }
+    .open_main-page_header_languiges a {
+        padding: 6px 10px;
+    }
+
+    .open_main-page_header_shop-links {
+        width: 350px;
+    }
+    .open_main-page_header_alfagradm-link {
+        height: 35px;
+    }
+    .open_main-page_header_7150-link {
+        height: 30px;
+        margin-top: -13px;
+    }
+
+    .open_main-page_banner-text {
+        right: 2%;
+        width: 330px;
+        padding: 15px 20px;
+        font-size: 15px;
+    }
+
+    .open_main-page_about-block .container {
+        padding: 50px 0px;
+    }
+
+    .open_main-page_block-1-element {
+        width: 160px;
+    }
+
+    .open_main-page_block-1-svg {
+        width: 30px;
+    }
+    .open_main-page_block-1-rating {
+        font-size: 22px;
+        margin-top: 7px;
+    }
+    .open_main-page_block-1-description {
+        font-size: 15px;
+        margin-top: 7px;
+    }
+
+    .open_dealer-page_top-pic-text {
+        font-size: 30px;
+    }
+    .open_dealer-page_advantages-block-left,
+    .open_dealer-page_advantages-block-right {
+        flex: 0 0 470px;
+    }
+    .open_dealer-page_advantages_text {
+        font-size: 16px;
+    }
+    .open_dealer-page_offer-block-left,
+    .open_dealer-page_offer-block-right {
+        flex: 0 0 470px;
+    }
+    .open_dealer-page_offer_element p {
+        font-size: 16px;
+    }
+    .open_dealer-page_pic-3-text {
+        width: 480px;
+        margin-left: 30px;
+    }
+    .open_dealer-page_pic-4-text {
+        width: 440px;
+        margin-right: 30px;
+    }
+    .open_dealer-page_pic-3-text p,
+    .open_dealer-page_pic-4-text p {
+        font-size: 16px;
+    }
+
+
+
+    .open_brand-page_our-brands_logo {
+        flex: 0 0 250px;
+    }
+    .open_contact-page_contact-info,
+    .open_contact-page_contact-map {
+        flex: 0 0 50%;
+    }
+    .open_vacancy-page_advantage_description {
+        font-size: 18px;
+    }
+    .open_vacancy-page_company-part-block {
+        flex-wrap: wrap;
+    }
+    .open_vacancy-page_company-part_info {
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+    }
+    .open_vacancy-page_company-part_youtube {
+        flex: 0 0 735px;
+        padding-top: 0;
+        height: 413px;
+    }
+    .open_vacancy-page_vacancy-element_title-line {
+        justify-content: space-between;
+    }
+    .open_vacancy-page_vacancy-element_title-line h3 {
+        flex: 0 0 640px;
+    }
+    .open_vacancy-page_vacancy-element_arrow {
+        padding-left: 30px;
+    }
+    .footer_legal-address {
+        margin-bottom: 10px;
+    }
+    .footer_address-block {
+        flex-wrap: wrap;
+        width: 380px;
+    }
+
+}
+
+/**********************************************************************/
+
+@media (max-width: 1023px) {
+
+    body {
+        padding-top: 112px;
+    }
+    .container {
+        width: 725px;
+    }
+    .on-top-button {
+        bottom: 100px;
+    }
+
+    .open_main-page_header_logo-line .container {
+        height: 60px;
+    }
+    .open_main-page_header_info-block {
+        width: 300px;
+        height: auto;
+        border-bottom: none;
+    }
+    .header_phones-block {
+        width: auto;
+        height: auto;
+    }
+    .header_phone-ico_mobile,
+    .header_link-ico_mobile {
+        display: block;
+        height: 28px;
+    }
+    .header_phones {
+        display: none;
+        top: 35px;
+        width: max-content;
+        padding: 5px 0;
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    .header_phone-element {
+        display: block;
+    }
+    .header_phone-line .header_phone-arrow {
+        display: none;
+    }
+    .header_phone-line {
+        padding: 8px 10px;
+    }
+
+    .open_main-page_header_address address {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 35px;
+        z-index: 1;
+        width: max-content;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    .open_main-page_header_svg {
+        height: 28px;
+        padding-right: 0;
+    }
+
+    .open_main-page_header_brand-sites-block {
+        width: auto;
+        height: auto;
+    }
+    .open_main-page_header_brand-site-links {
+        display: none;
+        top: 35px;
+        width: max-content;
+        padding: 5px 0;
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    .open_main-page_header_site-link {
+        display: block;
+    }
+    .open_main-page_header_site-link-first .open_main-page_header_svg,
+    .open_main-page_header_site-link-first .header_phone-arrow {
+        display: none;
+    }
+    .open_main-page_header_site-link,
+    .open_main-page_header_site-link-first {
+        padding: 7px 10px;
+    }
+
+    .header_lang-ico_mobile {
+        display: block;
+        height: 28px;
+    }
+    .open_main-page_header_languiges-block {
+        width: auto;
+        height: auto;
+    }
+    .open_main-page_header_languiges {
+        display: none;
+        top: 35px;
+        width: max-content;
+        padding: 5px 0;
+        box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    .open_main-page_header_languiges .header_phone-arrow {
+        display: none;
+    }
+    .open_main-page_header_languige-element {
+        display: block;
+    }
+
+
+    .open_main-page_header_dealer-enter {
+        padding: 4px;
+        height: auto;
+    }
+    .open_main-page_header_dealer-text {
+        display: none;
+    }
+
+    .open_header_menu-line .container {
+        padding-bottom: 10px;
+    }
+    .open_main-menu_burger-block {
+        display: block;
+        width: 130px;
+        height: 36px;
+        background-color: #870020;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .open_main-menu_lines {
+        width: 24px;
+        height: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: relative;
+    }
+    .open_main-menu_lines div {
+        width: 100%;
+        height: 4px;
+        background-color: #fff;
+        border-radius: 1px;
+        transition: .5s;
+    }
+    .open_main-menu_lines.active .hr-2 {
+        display: none;
+    }
+    .open_main-menu_lines.active .hr-1 {
+        transform: rotate(45deg);
+        position: absolute;
+    }
+    .open_main-menu_lines.active .hr-3 {
+        transform: rotate(-45deg);
+        position: absolute;
+    }
+
+    .open_main-menu_text {
+        font-size: 18px;
+    }
+
+    .open_header_main-menu {
+        position: fixed;
+        left: 0;
+        top: -150px;
+        z-index: -1;
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+        transition: top .5s;
+    }
+    .open_header_main-menu.active {
+        top: 112px;
+    }
+    .open_header_main-menu ul {
+        width: 725px;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    .open_header_main-menu ul li {
+        display: block;
+        height: 40px;
+    }
+    .open_header_main-menu ul li a {
+        height: 100%;
+        justify-content: left;
+    }
+
+    .open_main-page_header_shop-links {
+        width: 300px;
+    }
+    .open_main-page_header_alfagradm-link {
+        height: 32px;
+    }
+    .open_main-page_header_7150-link {
+        height: 28px;
+    }
+
+    .open_main-page_banner-text {
+        right: 1%;
+        width: 295px;
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+
+    .main-page_promo-line_slider-description-wrapper {
+        width: 400px;
+        height: 80px;
+    }
+    .main-page_promo-line_slider-description {
+        font-size: 28px;
+    }
+    .open_main-page_about-block .container {
+        padding: 30px 0px;
+        font-size: 17px;
+    }
+
+    .open_main-page_block-1 .container {
+        flex-wrap: wrap;
+        padding-bottom: 0;
+    }
+    .open_main-page_block-1-rating {
+        font-size: 20px;
+    }
+    .open_main-page_block-1-element {
+        width: 200px;
+        margin-bottom: 30px;
+    }
+    .open_main-page_block-1-description {
+        width: 160px;
+    }
+
+    .open_main-page_block-2 .container {
+        flex-wrap: wrap;
+    }
+    .open_main-page_block-2_map-block {
+        order: 1;
+        margin-bottom: 30px;
+    }
+    .open_main-page_block-2_text-block {
+        order: 2;
+    }
+    .open_main-page_stage-element_img-block,
+    .open_main-page_stage-element_text-block {
+        flex: 0 0 50%;
+    }
+
+    .open_main-page_structure-element {
+        flex-wrap: wrap;
+        padding-bottom: 50px;
+        border-bottom: solid 1px rgba(0, 0, 0, .1);
+    }
+    .open_main-page_structure-element:last-child {
+        border-bottom: none;
+    }
+    .open_main-page_structure-element_img-block {
+        flex: 0 0 100%;
+        margin-bottom: 20px;
+        order: 1;
+    }
+    .open_main-page_structure-element_text-block {
+        flex: 0 0 100%;
+        order: 2;
+    }
+
+    .open_dealer-page_top-pic-text {
+        font-size: 22px;
+    }
+    .open_dealer-page_advantages-block {
+        display: block;
+    }
+    .open_dealer-page_advantages_img-block {
+        flex: 0 0 80px;
+        width: 80px;
+        height: 80px;
+    }
+    .open_dealer-page_advantages_img-background {
+        width: 68px;
+        height: 68px;
+    }
+    .open_dealer-page_advantages_svg svg {
+        width: 70px;
+        max-width: 70px;
+        max-height: 70px;
+    }
+    .open_dealer-page_advantages-block {
+        justify-content: space-between;
+    }
+    .open_dealer-page_advantages-block-left,
+    .open_dealer-page_advantages-block-right {
+        flex: 0 0 49%;
+    }
+    .open_dealer-page_advantages_text {
+        font-size: 16px;
+    }
+    .open_dealer-page_offer-block {
+        justify-content: space-between;
+    }
+    .open_dealer-page_offer-block-left,
+    .open_dealer-page_offer-block-right {
+        flex: 0 0 49%;
+    }
+    .open_dealer-page_pic-3-text {
+        width: auto;
+        margin-left: 20px;
+    }
+    .open_dealer-page_pic-3-text h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .open_dealer-page_pic-4-text {
+        width: auto;
+        margin-right: 0;
+        margin-left: 20px;
+    }
+    .open_dealer-page_pic-4-text h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .open_brand-page_our-brands_logo {
+        flex: 0 0 180px;
+    }
+    .open_brand-page_our-brands_text-block {
+        padding-left: 20px;
+        font-size: 15px;
+    }
+    .open_brand-page_our-brands_svg {
+        padding-left: 20px;
+    }
+    .open_contact-page_contacts-block {
+        display: block;
+    }
+    .open_contact-page_contact-info {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    .open_contact-page_contact-map iframe {
+        height: 400px;
+    }
+
+    .open_contact-page_contacts-2 .container {
+        display: block;
+    }
+    .open_contact-page_requisites {
+        margin-top: 50px;
+    }
+
+    .open_vacancy-page_advantage_img-block {
+        width: 80px;
+        height: 80px;
+    }
+    .open_vacancy-page_advantage_img-background {
+        width: 68px;
+        height: 68px;
+    }
+    .open_vacancy-page_advantage_svg svg {
+        width: 50px;
+        max-width: 50px;
+        max-height: 50px;
+    }
+    .open_vacancy-page_advantage-element {
+        width: 135px;
+    }
+    .open_vacancy-page_advantage_description {
+        font-size: 13px;
+    }
+    .open_vacancy-page_vacancy-element {
+        padding: 20px;
+    }
+    .open_vacancy-page_vacancy-element_title-line h3 {
+        flex: 0 0 50%;
+        font-size: 18px;
+    }
+    .open_vacancy-page_vacancy-element_salary {
+        flex: 0 0 50%;
+        justify-content: flex-end;
+        font-size: 16px;
+    }
+    .open_vacancy-page_vacancy-element_arrow {
+        padding-left: 20px;
+    }
+
+    .footer_info {
+        flex-wrap: wrap;
+    }
+    .footer_address-block {
+        margin-bottom: 30px;
+    }
+
+    .registration-page h1,
+    .registration-page_form-block {
+        width: 725px;
+    }
+    .registration-page_personal-data-block,
+    .registration-page_company-data-block,
+    .registration-page_bank-data-block,
+    .registration-page_shops-data-block,
+    .registration-page_contacts-data-block {
+        flex-wrap: wrap;
+    }
+    .registration-page_personal-data,
+    .registration-page_company-data,
+    .registration-page_contacts-block,
+    .registration-page_shops-data {
+        flex: 0 0 347.5px;
+        margin-bottom: 20px;
+    }
+    .registration-page_bank-data {
+        flex: 0 0 228.33px;
+        margin-bottom: 20px;
+    }
+
+}
+
+/**********************************************************************/
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 95%;
+    }
+    body {
+        padding-top: 90px;
+    }
+
+    .open_main-page_header_logo-line .container {
+        height: 45px;
+    }
+    .open_main-page_header_logo img {
+        height: 38px;
+    }
+
+    .open_main-page_header_info-block {
+        width: 280px;
+    }
+    .open_main-page_header_shop-links {
+        width: 280px;
+    }
+    .open_main-page_header_alfagradm-link {
+        height: 30px;
+    }
+    .open_main-page_header_7150-link {
+        height: 25px;
+    }
+    .open_header_menu-line .container {
+        padding-bottom: 5px;
+    }
+    .open_header_main-menu.active {
+        top: 90px;
+    }
+    .open_main-page_banner-text {
+        width: 255px;
+        padding: 10px;
+    }
+
+    .main-page_promo-line_slider-description-wrapper {
+        width: 310px;
+        height: 70px;
+    }
+    .main-page_promo-line_slider-description {
+        font-size: 22px;
+    }
+    .main-page_slider-lines-block {
+        padding: 15px 0;
+    }
+
+    .open_main-page_block-1-element {
+        width: 185px;
+    }
+
+    .open_main-page_stage-element_img-block,
+    .open_main-page_stage-element_text-block {
+        flex: 0 0 100%;
+    }
+    .open_main-page_stage-element {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .open_main-page_stage-element_img-block {
+        margin-bottom: 30px;
+        order: 1;
+    }
+    .open_main-page_stage-element_text-block {
+        order: 2;
+    }
+    .open_main-page_map iframe {
+        height: 500px;
+    }
+
+    .open_dealer-page_top-pic-text {
+        font-size: 18px;
+    }
+    .open_dealer-page_advantages h2 {
+        padding: 30px 0;
+        font-size: 18px;
+    }
+    .open_dealer-page_offer-block {
+        display: block;
+    }
+    .open_dealer-page_offer_element {
+        margin-bottom: 20px !important;
+    }
+    .open_dealer-page_pic-3-text,
+    .open_dealer-page_pic-4-text {
+        margin-left: 10px;
+    }
+    .open_dealer-page_pic-3-text p,
+    .open_dealer-page_pic-4-text p {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+    .open_dealer-page_offer .container {
+        padding: 30px 0;
+    }
+    .open_dealer-page_pic-3-text .round,
+    .open_dealer-page_pic-4-text .round {
+        margin-bottom: 2px;
+    }
+
+    .open_brand-page_our-brands_element {
+        position: relative;
+        flex-wrap: wrap;
+    }
+    .open_brand-page_our-brands_logo {
+        flex: 0 0 100%;
+    }
+    .open_brand-page_our-brands_logo img {
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    .open_brand-page_our-brands_text-block {
+        padding-left: 0;
+    }
+    .open_brand-page_our-brands_svg {
+        padding-left: 0;
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+    .open_brand-page_our-brands_svg svg {
+        height: 30px;
+    }
+
+    .service-page_centers-toggler ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .service-page_centers-toggler ul li {
+        box-sizing: border-box;
+        flex: 0 0 16.66%;
+    }
+    .service-page_img-map {
+        display: block;
+    }
+    .service-page_img {
+        margin-bottom: 10px;
+    }
+    .service-page_map {
+        padding: 0;
+    }
+    .service-page_map iframe {
+        height: 400px !important;
+    }
+
+    .open_vacancy-page_advantages-block {
+        flex-wrap: wrap;
+    }
+    .open_vacancy-page_advantage-element {
+        width: 175px;
+        margin-bottom: 30px;
+    }
+    .open_vacancy-page_company-part_title {
+        padding-top: 70px;
+    }
+    .open_vacancy-page_company-part-block {
+        display: block;
+    }
+    .open_vacancy-page_company-part_info {
+        padding-right: 0;
+    }
+    .open_vacancy-page_company-part_youtube {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+    .open_vacancy-page_company-part_youtube iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .registration-page h1,
+    .registration-page_form-block {
+        width: 100%;
+    }
+    .registration-page_personal-data,
+    .registration-page_company-data,
+    .registration-page_contacts-block,
+    .registration-page_shops-data,
+    .registration-page_bank-data {
+        flex: 0 0 100%;
+    }
+
+
+
+}
+
+/**********************************************************************/
+
+@media (max-width: 570px) {
+
+    .container {
+        width: 90%;
+    }
+    body {
+        padding-top: 87px;
+    }
+    .open_main-page_header_logo img {
+        height: 27.3px;
+    }
+
+    .open_main-page_header_info-block {
+        width: 50%;
+        min-width: 145px;
+    }
+    .header_phones {
+        left: -80px;
+    }
+    .open_main-page_header_address address {
+        left: -100px;
+    }
+    .open_main-page_header_brand-site-links {
+        left: -25px;
+    }
+    .open_main-page_header_languiges {
+        left: -8px;
+    }
+    .header_phone-ico_mobile,
+    .header_link-ico_mobile,
+    .open_main-page_header_svg,
+    .header_lang-ico_mobile {
+        height: 20px;
+    }
+    .open_main-menu_burger-block {
+        width: 100px;
+    }
+    .open_main-page_header_alfagradm-link {
+        height: 20px;
+    }
+    .open_main-page_header_7150-link {
+        height: 17px;
+        margin-top: -9px;
+    }
+    .open_main-page_header_shop-links {
+        width: 50%;
+        min-width: 170px;
+    }
+    .open_header_main-menu.active {
+        top: 87px;
+    }
+    .open_main-page_banner-block {
+        width: 100%;
+        overflow: hidden;
+        justify-content: center;
+    }
+    .open_main-page_banner-block img {
+        /*width: auto;*/
+        /*height: 150px;*/
+    }
+    .open_main-page_banner-text {
+        width: 235px;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .main-page_promo-line_slider-description-wrapper {
+        width: 210px;
+        height: 35px;
+    }
+    .main-page_promo-line_slider-description {
+        font-size: 15px;
+    }
+    .open_main-page_about-block .container {
+        padding: 20px 0px;
+        font-size: 14px;
+    }
+    .main-page_slider-lines-block {
+        padding: 10px 0;
+    }
+
+    .open_main-page_block-2_text-block {
+        height: 220px;
+    }
+    .open_main-page_block-2_text-header {
+        font-size: 22px;
+    }
+    .open_main-page_block-2_description {
+        font-size: 16px;
+    }
+    .open_main-page_block-3-stages_title,
+    .open_main-page_block-4-structure_title {
+        font-size: 24px;
+        padding: 0 10px;
+        text-align: center;
+    }
+    .open_main-page_stage-element_header {
+        font-size: 20px;
+    }
+    .open_main-page_structure-element_text-block h3 {
+        font-size: 20px;
+    }
+    .open_main-page_map iframe {
+        height: 400px;
+    }
+
+    .open_dealer-page_top-pic-text {
+        width: 98%;
+        line-height: 1.2;
+        font-size: 13px;
+    }
+    .open_dealer-page_top-pic-text p:first-child {
+        margin-bottom: 5px;
+    }
+    .open_dealer-page_advantages h2 {
+        font-size: 16px;
+    }
+    .open_dealer-page_pic-2-text {
+        font-size: 24px;
+    }
+    .open_dealer-page_pic-3-block .container,
+    .open_dealer-page_pic-4-block .container {
+        min-height: 208px;
+        overflow: hidden;
+    }
+    .open_dealer-page_pic-3,
+    .open_dealer-page_pic-4 {
+        width: auto;
+        height: 208px;
+    }
+    .open_dealer-page_pic-3-text,
+    .open_dealer-page_pic-4-text {
+        margin-left: 5px;
+    }
+    .open_dealer-page_pic-3-text h3,
+    .open_dealer-page_pic-4-text h3 {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    .open_dealer-page_pic-3-text p,
+    .open_dealer-page_pic-4-text p {
+        font-size: 12px;
+        line-height: 1.1;
+        margin-bottom: 3px;
+    }
+    .service-page_service-center address h3 {
+        padding-right: 125px;
+    }
+    .service-page_visitka-link {
+        width: 117px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .service-page_visitka-link a {
+        text-align: center;
+    }
+
+    .service-page_map iframe {
+        height: 300px !important;
+    }
+    .open_vacancy-page_vacancy-element {
+        padding: 20px 10px;
+    }
+    .open_vacancy-page_vacancy-element_title-line {
+        display: block;
+        position: relative;
+    }
+    .open_vacancy-page_vacancy-element_title-line h3 {
+        padding-right: 25px;
+        margin-bottom: 15px;
+    }
+    .open_vacancy-page_vacancy-element_salary {
+        display: block;
+    }
+    .open_vacancy-page_vacancy-element_arrow {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .open_vacancy-page_vacancy-element_vacancy-link a {
+        display: block;
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .open_popup_info-block {
+        width: 95%;
+    }
+    .open_popup_close-button {
+        right: -5px;
+        top: -40px;
+    }
+    .footer_phones-block {
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 410px;
+    }
+
+    .registration-page_client-type-block {
+        flex-wrap: wrap;
+    }
+    .registration-page_client-type-block div {
+        padding-right: 10px;
+    }
+    .registration-page_client-type-block div label {
+        font-size: 15px;
+    }
+    .registration-page_client-type-block div:first-child {
+        flex: 0 0 100%;
+        padding-right: 0;
+    }
+
+    .open_service-repare-status_form-line {
+        flex-wrap: wrap;
+    }
+    .open_service-repare-status_form-line .title {
+        flex: 0 0 100px;
+    }
+    .open_service-repare-status_form-line .input {
+        flex-grow: 1;
+    }
+    .open_service-repare-status_form-line .button {
+        flex: 0 0 100%;
+        margin-left: 0;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .open_service-repare-status_form-line:last-child {
+        margin-top: 30px;
+    }
+    .open_service-repare-status_info-block .info-line {
+        font-size: 12px;
+    }
+    .open_service-repare-status_info-block .info-line .title {
+        padding: 0 5px;
+        flex: 0 0 80px;
+    }
+
+}

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '/vendor/awcodes/filament-tiptap-editor/resources/css/plugin.css';
+
+//`hover:text-primary-500`
+
+.msg{
+    &-error{
+        @apply text-xs text-red-500
+    }
+}

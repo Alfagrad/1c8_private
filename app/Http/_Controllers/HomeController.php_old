@@ -1,0 +1,431 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\ArrivalItem;
+use App\Models\BlockAction;
+use App\Models\Cart;
+use App\Models\Category;
+use App\Models\Feedback;
+use App\Models\Item;
+use App\Models\News;
+use App\Models\Profile;
+use App\Models\ReviewItem;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
+class HomeController extends Controller
+{
+
+    public $user;
+    public function __construct(Request $request)
+    {
+        parent::__construct($request);
+    }
+
+    public function index(Request $request){
+
+        $data = $this->getUserData($request);
+        $data['news'] = News::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
+        $data['arrivalItems'] = ArrivalItem::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
+        $data['reviewItems'] = ReviewItem::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
+        $data['blockActions'] = BlockAction::where('is_active', 1)->orderBy('created_at', 'DESC')->get();
+        $data['blockNews'] = News::where('is_active', 1)->orderBy('created_at', 'DESC')->where('is_show_main',1)->take(4)->get();
+
+        return view('home', $data);
+    }
+
+
+    public function emailFeedback(Request $request){
+
+        \Log::info( Carbon::parse('now') . 'Отправка письма :');
+
+        $profile = $request->user()->profile()->with('contact')->first();
+
+        $attachName = '';
+        $attachFile = '';
+        if($request->hasFile('attach')){
+            $attach = $request->file('attach');
+            $attachName = $profile->id . '_' . time().'.'.$attach->extension();
+            $attachFile = $attach->move(public_path('attach'), $attachName);
+
+        }
+
+        $feedback = [
+            'profile_id' => $profile->id,
+            'client_name' => $profile->name,
+            'company_name' => $profile->company_name,
+            'email' => $profile->email,
+            'attach' => $attachName,
+            'is_confidential' => $request->get('is_confidential', 0),
+            'comment' => $request->get('comment', 0),
+            'feedback_type' => $request->get('feedback_type', 0),
+        ];
+
+        Feedback::create($feedback);
+        if(isset($profile->contact)){
+            $feedback['contacts'] = $profile->contact;
+        }
+
+        if(!$profile->manager_email){
+            //    return redirect('/pages/thanks_message');
+            $profile->manager_email =  setting('email_to_other');
+        }
+
+        if($request->get('feedback_type') == config('constants.emailTo.manager')){
+            $email_headers['subject'] = 'Обратная связь';
+            $email_headers['email_to'] = $profile->manager_email; //$user->email;
+        } elseif($request->get('feedback_type') == config('constants.emailTo.head')){
+            $email_headers['subject'] = 'Жалоба директору';
+            $email_headers['email_to'] = setting('email_to_head'); //$user->email;
+        } elseif($request->get('feedback_type') == config('constants.emailTo.claim')){
+            $email_headers['subject'] = 'Жалоба на демпинг';
+            $email_headers['email_to'] = $profile->manager_email; //$user->email;
+            if($request->has('id_1c')){
+                $item = Item::where('1c_id', $request->get('id_1c'))->first();
+                $feedback['item_id'] = $item->code;
+                $feedback['item_name'] = $item->name;
+            }
+        } elseif($request->get('feedback_type') == config('constants.emailTo.discount')){
+            $email_headers['subject'] = 'Хочу дешевле';
+            $email_headers['email_to'] = $profile->manager_email; //$user->email;
+            if($request->has('id_1c')){
+                $item = Item::where('id', $request->get('id_1c'))->first();
+                $feedback['item_id'] = $item->code;
+                $feedback['item_name'] = $item->name;
+            }
+        }
+
+        $email_headers['email_from'] = setting('email_from');
+        $email_headers['headers_from'] = 'Alfastok';
+
+        \Log::info( Carbon::parse('now') . 'Feedback : ' . print_r( $feedback, true ));
+        \Log::info( Carbon::parse('now') . 'Header : ' . print_r( $email_headers, true ));
+
+        \Mail::send('emails.feedback', [ 'feedback' => $feedback ], function($message) use ($email_headers, $attachFile)
+        {
+            $message->from($email_headers['email_from'], $email_headers['headers_from']);
+            $message->to($email_headers['email_to'])->subject($email_headers['subject']);
+            if($attachFile){
+                $message->attach($attachFile->getPathname());
+            }
+        });
+
+        if($request->get('feedback_type') == config('constants.emailTo.claim')){
+            return redirect()->back();
+        }
+
+        return redirect('/pages/thanks_message');
+    }
+
+
+    public function search(Request $request){
+        $data = $this->getUserData($request);
+        $profile = $request->user()->profile()->first();
+        $searchKeyword = $request->search_keywords;
+
+        // Обрезаем массив
+        // ищем в цикле
+
+        $searchKeywords = explode(' ', $searchKeyword);
+
+        $categories = Category::where('id',  '>', 0);
+        $items = Item::with('images')->where('id',  '>', 0);
+
+        //$cnt = 0;
+        foreach ($searchKeywords as $keyword){
+          //  if(strlen($keyword) < 3){
+          //      continue;
+          //  }
+            $categories->where('name', 'like', '%'.$keyword.'%');
+            $items->where('name', 'like', '%'.$keyword.'%');
+        }
+
+        $categories = $categories->take(10)->get();
+        $itemCount = $items->count();
+        $items = $items->take(20)->get();
+        $idToCart = Cart::where('profile_id', $profile->id)->pluck('count', 'item_id');
+
+        if($categories->count() or $items->count()){
+            return view('search',
+                [
+                    'categories' => $categories,
+                    'items' => $items,
+                    'idToCart' => $idToCart,
+                    'searchKeywords' =>$searchKeywords,
+                    'itemCount' => $itemCount,
+                    'searchKeyword' =>$searchKeyword,
+                ]);
+        } else {
+            return 'false';
+        }
+
+
+    }
+
+
+    public function getDiscount(Request $request){
+        $profile = $request->user()->profile()->first();
+
+        $item = Item::where('id', $request->item_id)->first();
+
+        if(!$profile->manager_email){
+            $profile->manager_email =  setting('email_to_other');
+        }
+
+        $email_headers['subject'] = 'Хочу дешевле';
+        $email_headers['email_to'] = $profile->manager_email; //$user->email;
+
+        $email_headers['email_from'] = setting('email_from');
+        $email_headers['headers_from'] = 'Alfastok';
+
+        \Mail::send('emails.getDiscount', [ 'item' => $item, 'profile' => $profile ], function($message) use ($email_headers)
+        {
+            $message->from($email_headers['email_from'], $email_headers['headers_from']);
+            $message->to($email_headers['email_to'])->subject($email_headers['subject']);
+        });
+
+        return 'true';
+
+    }
+
+
+    public function updatePassword(Request $request){
+
+        $user = $request->user();
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return 'true';
+    }
+
+    /**
+     * @description Генерация прайс листа
+     * @param Request $request
+     */
+    public function excelPrice(Request $request){
+        $this->getUserData($request);
+        $price = $this->generatePrice();
+
+        Excel::create('price_from_' . Carbon::now()->format('d.m.Y'), function($excel) use($price) {
+            $excel->sheet('Alfastok', function($sheet) use($price) {
+                $sheet->fromArray($price);
+                $sheet->setWidth('A', 5);
+                $sheet->setWidth('B', 40);
+                $sheet->setWidth('C', 50);
+            });
+        })->export('xls');
+
+    }
+
+    /**
+     * @description Генерация прайс листа по хешу
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function excelPriceFromHash(Request $request){
+        if(!$request->has('userToken')){
+            return redirect('/');
+        }
+        $user = User::where('login_token', $request->get('userToken'))->first();
+
+        if(!$user or $user->profile()->first()->is_blocked){
+            return redirect('/');
+        }
+        $this->user->profile()->first();
+        $price = $this->generatePrice();
+
+        Excel::create('price_from_' . Carbon::now()->format('d.m.Y'), function($excel) use($price) {
+            $excel->sheet('Alfastok', function($sheet) use($price) {
+                $sheet->fromArray($price);
+                $sheet->setWidth('A', 5);
+                $sheet->setWidth('B', 40);
+                $sheet->setWidth('C', 50);
+            });
+        })->export('xls');
+    }
+
+
+    public function excelPriceFromDirect(Request $request){
+        if(!$request->has('token')){
+            return redirect('/');
+        }
+        $profile = Profile::where('direct_token', $request->get('token'))->first();
+        if(!$profile or $profile->is_blocked){
+            return redirect('/');
+        }
+        Item::$priceType = $profile->type_price;
+
+        $price = $this->generatePrice();
+
+        Excel::create('price_from_' . Carbon::now()->format('d.m.Y'), function($excel) use($price) {
+            $excel->sheet('Alfastok', function($sheet) use($price) {
+                $sheet->fromArray($price);
+                $sheet->setWidth('A', 5);
+                $sheet->setWidth('B', 40);
+                $sheet->setWidth('C', 50);
+            });
+        })->export('xls');
+    }
+
+	public function generatePrice(){
+
+        $categoriesRequest =  Category::with(['items' => function ($query) {
+            $query->orderBy(\DB::raw('LCASE(default_sort)'), 'ASC');
+        },'items.actions', 'items.gift', 'items.cheap_good',  'subCategory.subCategory'])->where('parent_1c_id', 0);
+
+        $categories = $categoriesRequest->orderBy(\DB::raw('LCASE(default_sort)'), 'ASC')->where('1c_id', '<>', 193)->get();
+
+        $cheapItems = Item::where('cheap_goods','!=','')->pluck('cheap_goods');
+        $cheapItemIds = [];
+        foreach ($cheapItems as $cItem){
+            $cheapItemIds = array_merge($cheapItemIds, explode(',', $cItem));
+        }
+        //COM: так же можно сделать удаление дублей если они не удаляются
+
+        //dd($categories);
+        $price = [];
+        foreach ($categories as $mc){
+            foreach($mc->subCategory as $sc){
+
+                if($sc->subCategory->count()){
+                    foreach ($sc->subCategory as $scc){
+                        foreach($scc->items as $item){
+                            if( in_array($item->{'1c_id'}, $cheapItemIds) ){
+                                continue;
+                            }
+                            $count = $item->count;
+                            if($item->count > 10){
+                                $count = '> 10';
+                            } elseif($item->count <= 0 ){
+                                if($item->count_type == 3){
+                                    $count = 'Нет';
+                                }  elseif($item->count_type == 2){
+                                    $count = 'Резерв';
+                                } else {
+                                    $count = 'Нет';
+                                }
+                            }
+
+                            if($item->more_about ==  'Подробнее о товаре:'){
+                                $item->more_about = '';
+                            }
+
+                            $categoryName = $sc->name;
+                            if($scc->name){
+                                $categoryName = $scc->name;
+                            }
+
+
+                            $price[] = [
+                                'Код' => $item->code,
+                                //'Категория' => $mc->name .' -  '.$sc->name .' - '. $scc->name,
+                                //'Категория' => $categoryName,
+                                'Категория' => $scc->name,
+                                'Наименование товара' => $item->name,
+                                'Цена USD' => str_replace('.', ',', $item->usd_price),
+                                'Цена BYN' => str_replace('.', ',', $item->bel_price),
+                                'Розн USD' => str_replace('.', ',', $item->price_mr_usd),
+                                'Розн BYN' => str_replace('.', ',', $item->price_mr_bel),
+                                'Наличие' => $count,
+                                'Дата поступления' => $item->count_text,
+                                'Сообщение i' => $item->more_about,
+                                'Сообщение %' => $item->mini_text . ' ' . $item->viewPriceList(),
+                            ];
+                        }
+                    }
+                } else {
+
+                    foreach($sc->items as $item){
+                        if( in_array($item->{'1c_id'}, $cheapItemIds) ){
+                            continue;
+                        }
+
+                        $count = $item->count;
+                        if($item->count > 10){
+                            $count = '> 10';
+                        } elseif($item->count <= 0 ){
+                            if($item->count_type == 3) {
+                                $count = 'Нет';
+                            } elseif($item->count_type == 2){
+                                $count = 'Резерв';
+                            } else {
+                                $count = 'Нет';
+                            }
+                        }
+
+                        if($item->more_about ==  'Подробнее о товаре:'){
+                            $item->more_about = '';
+                        }
+
+
+
+                        $price[] = [
+                            'Код' => $item->code,
+                            //'Категория' => $mc->name .' -  '.$sc->name,
+                            'Категория' => $sc->name,
+                            'Наименование товара' => $item->name,
+                            'Цена USD' => str_replace('.', ',', $item->usd_price),
+                            'Цена BYN' => str_replace('.', ',', $item->bel_price),
+                            'Розн USD' => str_replace('.', ',', $item->price_mr_usd),
+                            'Розн BYN' => str_replace('.', ',', $item->price_mr_bel),
+                            'Наличие' => $count,
+                            'Дата поступления' => $item->count_text,
+                            'Сообщение i' => $item->more_about,
+                            'Сообщение %' => $item->mini_text. ' ' . $item->viewPriceList(),
+
+                        ];
+                    }
+                }
+            }
+
+        }
+        return $price;
+    }
+
+
+	public function testMailChimp(){
+		$mailChimp = \App::make('\App\Helpers\MailChimpAlfa');
+
+		dd($mailChimp->deleteSubscriber($list = '6f836bc284', $email = 'develop@zmitroc.by', $name = 'Тестовая компания'));
+	}
+
+
+    /**
+     *@description SERVICE Прописывает всем пользователям новый токен для входа по ссылке.
+     */
+	public function generateLoginToken(){
+       $users = User::all();
+       foreach ($users as $user){
+           $user->login_token =  str_slug(str_random(25));
+           $user->save();
+       }
+
+    }
+
+
+    /**
+     *@description SERVICE Прописывает всем пользователям новый токен для входа по ссылке.
+     */
+    public function generateDirectToken(){
+        $profiles = Profile::all();
+        foreach ($profiles as $profile){
+            $profile->direct_token =  str_slug(str_random(25));
+            $profile->save();
+        }
+
+    }
+
+    /**
+     * Тестовый вход
+     */
+
+    public function enterFromUser($hash = null){
+
+        if(md5('ZmitroC') === $hash){
+            \Auth::loginUsingId(22); //40
+        }
+        return redirect('/');
+    }
+}
